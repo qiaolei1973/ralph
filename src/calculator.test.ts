@@ -4,7 +4,7 @@
 
 import { describe, it } from 'node:test';
 import assert from 'node:assert';
-import { add, subtract, multiply } from './calculator.js';
+import { add, subtract, multiply, divide } from './calculator.js';
 
 describe('Calculator', () => {
   describe('add', () => {
@@ -77,6 +77,36 @@ describe('Calculator', () => {
 
     it('should handle decimal numbers correctly', () => {
       assert.strictEqual(multiply(2.5, 4), 10);
+    });
+  });
+
+  describe('divide', () => {
+    it('should divide two positive numbers correctly', () => {
+      assert.strictEqual(divide(12, 3), 4);
+    });
+
+    it('should divide negative numbers correctly', () => {
+      assert.strictEqual(divide(-12, -3), 4);
+    });
+
+    it('should divide positive and negative numbers correctly', () => {
+      assert.strictEqual(divide(12, -3), -4);
+      assert.strictEqual(divide(-12, 3), -4);
+    });
+
+    it('should handle zero correctly as dividend', () => {
+      assert.strictEqual(divide(0, 5), 0);
+      assert.strictEqual(divide(0, 10), 0);
+    });
+
+    it('should handle decimal numbers correctly', () => {
+      assert.strictEqual(divide(5, 2), 2.5);
+    });
+
+    it('should return NaN when dividing by zero', () => {
+      assert.strictEqual(Number.isNaN(divide(5, 0)), true);
+      assert.strictEqual(Number.isNaN(divide(0, 0)), true);
+      assert.strictEqual(Number.isNaN(divide(-5, 0)), true);
     });
   });
 });
