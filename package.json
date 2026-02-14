@@ -1,0 +1,19 @@
+{
+  "name": "calculator-demo",
+  "version": "1.0.0",
+  "description": "A simple calculator demo for Ralph",
+  "main": "dist/cli.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test dist/**/*.test.js",
+    "typecheck": "tsc --noEmit",
+    "start": "node dist/cli.js"
+  },
+  "keywords": ["calculator", "demo"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
+  }
+}

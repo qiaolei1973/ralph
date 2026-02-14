@@ -1,0 +1,77 @@
+{
+  "project": "Calculator Demo",
+  "branchName": "ralph/calculator",
+  "description": "A simple command-line calculator that supports basic arithmetic operations",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Create calculator module with add function",
+      "description": "Create a basic calculator module with an add function that takes two numbers and returns their sum.",
+      "acceptanceCriteria": [
+        "Create src/calculator.ts module",
+        "Implement add(a: number, b: number): number function",
+        "Export the add function",
+        "Add basic unit tests for add function",
+        "Typecheck passes with tsc"
+      ],
+      "priority": 1,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-002",
+      "title": "Add subtract function to calculator",
+      "description": "Add a subtract function that returns the difference between two numbers.",
+      "acceptanceCriteria": [
+        "Implement subtract(a: number, b: number): number function",
+        "Add unit tests for subtract function",
+        "Typecheck passes with tsc"
+      ],
+      "priority": 2,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-003",
+      "title": "Add multiply function to calculator",
+      "description": "Add a multiply function that returns the product of two numbers.",
+      "acceptanceCriteria": [
+        "Implement multiply(a: number, b: number): number function",
+        "Add unit tests for multiply function",
+        "Typecheck passes with tsc"
+      ],
+      "priority": 3,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-004",
+      "title": "Add divide function to calculator",
+      "description": "Add a divide function that returns the quotient of two numbers.",
+      "acceptanceCriteria": [
+        "Implement divide(a: number, b: number): number function",
+        "Handle division by zero (return NaN or throw error)",
+        "Add unit tests for divide function including edge cases",
+        "Typecheck passes with tsc"
+      ],
+      "priority": 4,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-005",
+      "title": "Create CLI interface for calculator",
+      "description": "Create a command-line interface that allows users to perform calculations.",
+      "acceptanceCriteria": [
+        "Create src/cli.ts file",
+        "Parse command-line arguments (operation, num1, num2)",
+        "Call appropriate calculator function",
+        "Print result to console",
+        "Typecheck passes with tsc"
+      ],
+      "priority": 5,
+      "passes": false,
+      "notes": ""
+    }
+  ]
+}
