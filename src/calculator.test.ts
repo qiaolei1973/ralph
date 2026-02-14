@@ -4,7 +4,7 @@
 
 import { describe, it } from 'node:test';
 import assert from 'node:assert';
-import { add, subtract } from './calculator.js';
+import { add, subtract, multiply } from './calculator.js';
 
 describe('Calculator', () => {
   describe('add', () => {
@@ -52,6 +52,31 @@ describe('Calculator', () => {
 
     it('should handle decimal numbers correctly', () => {
       assert.strictEqual(subtract(5.5, 2.5), 3);
+    });
+  });
+
+  describe('multiply', () => {
+    it('should multiply two positive numbers correctly', () => {
+      assert.strictEqual(multiply(3, 4), 12);
+    });
+
+    it('should multiply negative numbers correctly', () => {
+      assert.strictEqual(multiply(-2, -3), 6);
+    });
+
+    it('should multiply positive and negative numbers correctly', () => {
+      assert.strictEqual(multiply(5, -3), -15);
+      assert.strictEqual(multiply(-5, 3), -15);
+    });
+
+    it('should handle zero correctly', () => {
+      assert.strictEqual(multiply(5, 0), 0);
+      assert.strictEqual(multiply(0, 5), 0);
+      assert.strictEqual(multiply(0, 0), 0);
+    });
+
+    it('should handle decimal numbers correctly', () => {
+      assert.strictEqual(multiply(2.5, 4), 10);
     });
   });
 });
