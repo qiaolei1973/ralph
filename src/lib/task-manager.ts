@@ -2,7 +2,9 @@ import fs from 'fs/promises';
 import path from 'path';
 import { PRD, UserStory } from './types';
 
-const PRD_PATH = process.env.PRD_FILE_PATH || '/home/ubuntu/workspace/ralph/prd.json';
+// Get project root directory (works both in dev and production)
+const PROJECT_ROOT = process.cwd();
+const PRD_PATH = process.env.PRD_FILE_PATH || path.join(PROJECT_ROOT, 'prd.json');
 
 /**
  * Load PRD from file

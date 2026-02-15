@@ -1,9 +1,12 @@
 import { spawn } from 'child_process';
 import fs from 'fs/promises';
+import path from 'path';
 import { RalphProcessStatus } from './types';
 
-const PID_FILE = '/tmp/ralph.pid';
-const PROGRESS_FILE = process.env.PROGRESS_FILE_PATH || '/home/ubuntu/workspace/ralph/scripts/ralph/progress.txt';
+// Get project root directory (works both in dev and production)
+const PROJECT_ROOT = process.cwd();
+const PID_FILE = path.join(PROJECT_ROOT, '.tmp', 'ralph.pid');
+const PROGRESS_FILE = process.env.PROGRESS_FILE_PATH || path.join(PROJECT_ROOT, 'scripts', 'ralph', 'progress.txt');
 
 /**
  * Start Ralph agent
@@ -24,7 +27,7 @@ export async function startRalph(
       '--tool', tool,
       String(maxIterations)
     ], {
-      cwd: '/home/ubuntu/workspace/ralph',
+      cwd: PROJECT_ROOT,
       detached: true,
       stdio: ['ignore', 'pipe', 'pipe']
     });
