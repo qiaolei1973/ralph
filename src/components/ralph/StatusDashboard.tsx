@@ -72,78 +72,101 @@ export default function StatusDashboard({ tasksCompleted, tasksTotal, branchName
   const progressPercent = tasksTotal > 0 ? Math.round((tasksCompleted / tasksTotal) * 100) : 0;
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-gray-800">Ralph Agent Status</h2>
+    <div className="card p-6 shadow-lg bg-gradient-to-br from-slate-50 to-blue-50 border-0">
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-4">
+          <div className={`w-12 h-12 rounded-xl flex items-center justify-center shadow-lg ${
+            status?.isRunning
+              ? 'bg-gradient-to-br from-green-500 to-emerald-600'
+              : 'bg-gradient-to-br from-gray-400 to-gray-500'
+          }`}>
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <div>
+            <h2 className="text-xl font-bold text-gray-900">Ralph Agent</h2>
+            <p className="text-sm text-gray-500">
+              {loading ? 'Checking status...' : status?.isRunning ? 'Running' : 'Stopped'}
+            </p>
+          </div>
+        </div>
 
-        {loading ? (
-          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-400"></div>
-        ) : (
-          <div className="flex items-center gap-2">
-            {status?.isRunning ? (
-              <>
+        <div className="flex items-center gap-3">
+          {status?.isRunning ? (
+            <>
+              <span className="flex items-center gap-2 text-sm font-medium text-green-600">
                 <span className="relative flex h-3 w-3">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                 </span>
-                <span className="text-sm font-medium text-green-600">Running</span>
-                <button
-                  onClick={stopRalph}
-                  className="px-3 py-1 bg-red-600 text-white text-sm rounded hover:bg-red-700 transition-colors"
-                >
-                  Stop
-                </button>
-              </>
-            ) : (
-              <>
-                <span className="h-3 w-3 rounded-full bg-gray-400"></span>
-                <span className="text-sm font-medium text-gray-600">Stopped</span>
-                <button
-                  onClick={startRalph}
-                  className="px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition-colors"
-                >
-                  Start
-                </button>
-              </>
-            )}
-          </div>
-        )}
+                Active
+              </span>
+              <button
+                onClick={stopRalph}
+                className="btn btn-sm bg-red-500 text-white hover:bg-red-600"
+              >
+                <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 10h6v4H9z" />
+                </svg>
+                Stop
+              </button>
+            </>
+          ) : (
+            <button
+              onClick={startRalph}
+              className="btn btn-primary"
+            >
+              <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Start Ralph
+            </button>
+          )}
+        </div>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-4">
+      <div className="grid md:grid-cols-3 gap-6">
         {/* Progress Bar */}
-        <div>
-          <p className="text-xs font-medium text-gray-600 mb-1">Task Progress</p>
-          <div className="w-full bg-gray-200 rounded-full h-3 mb-1">
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-medium text-gray-700">Task Progress</span>
+            <span className="text-sm font-bold text-blue-600">{progressPercent}%</span>
+          </div>
+          <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
             <div
-              className="bg-blue-600 h-3 rounded-full transition-all duration-300"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 h-3 rounded-full transition-all duration-500 ease-out"
               style={{ width: `${progressPercent}%` }}
             ></div>
           </div>
-          <p className="text-xs text-gray-500">{tasksCompleted}/{tasksTotal} tasks completed ({progressPercent}%)</p>
+          <p className="text-xs text-gray-500">{tasksCompleted}/{tasksTotal} tasks completed</p>
         </div>
 
         {/* Branch Name */}
-        <div>
-          <p className="text-xs font-medium text-gray-600 mb-1">Branch</p>
-          <code className="text-xs bg-gray-100 px-2 py-1 rounded text-gray-700">
+        <div className="space-y-2">
+          <span className="text-sm font-medium text-gray-700">Branch</span>
+          <code className="block px-3 py-2 bg-white rounded-lg border border-gray-200 text-sm font-mono text-gray-700">
             {branchName || 'main'}
           </code>
         </div>
 
         {/* Iteration Info */}
-        <div>
-          <p className="text-xs font-medium text-gray-600 mb-1">
-            {status?.isRunning ? 'Current Iteration' : 'Tool'}
-          </p>
-          <p className="text-xs text-gray-700">
-            {status?.isRunning
-              ? `${status.currentIteration ?? 0} / ${status.maxIterations ?? 10}`
-              : status?.tool?.toUpperCase() || 'CLAUDE'}
-          </p>
-          {status?.pid && (
-            <p className="text-xs text-gray-500">PID: {status.pid}</p>
-          )}
+        <div className="space-y-2">
+          <span className="text-sm font-medium text-gray-700">
+            {status?.isRunning ? 'Iteration' : 'Tool'}
+          </span>
+          <div className="px-3 py-2 bg-white rounded-lg border border-gray-200">
+            <p className="text-sm font-bold text-gray-900">
+              {status?.isRunning
+                ? `${status.currentIteration ?? 0} / ${status.maxIterations ?? 10}`
+                : status?.tool?.toUpperCase() || 'CLAUDE'}
+            </p>
+            {status?.pid && (
+              <p className="text-xs text-gray-500 mt-1">PID: {status.pid}</p>
+            )}
+          </div>
         </div>
       </div>
     </div>
