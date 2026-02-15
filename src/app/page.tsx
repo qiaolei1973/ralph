@@ -1,9 +1,5 @@
-import Calculator from '@/components/Calculator';
+import { redirect } from 'next/navigation';
 
 export default function Home() {
-  return (
-    <main>
-      <Calculator />
-    </main>
-  );
+  redirect('/ralph');
 }

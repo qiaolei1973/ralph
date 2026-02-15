@@ -15,7 +15,7 @@
         "Typecheck passes with tsc"
       ],
       "priority": 1,
-      "passes": false,
+      "passes": true,
       "notes": ""
     },
     {
@@ -28,7 +28,7 @@
         "Typecheck passes with tsc"
       ],
       "priority": 2,
-      "passes": false,
+      "passes": true,
       "notes": ""
     },
     {
@@ -41,7 +41,7 @@
         "Typecheck passes with tsc"
       ],
       "priority": 3,
-      "passes": false,
+      "passes": true,
       "notes": ""
     },
     {
@@ -55,7 +55,7 @@
         "Typecheck passes with tsc"
       ],
       "priority": 4,
-      "passes": false,
+      "passes": true,
       "notes": ""
     },
     {
@@ -70,7 +70,7 @@
         "Typecheck passes with tsc"
       ],
       "priority": 5,
-      "passes": false,
+      "passes": true,
       "notes": ""
     }
   ]
